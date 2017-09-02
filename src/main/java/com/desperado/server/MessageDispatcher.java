@@ -4,7 +4,6 @@ import com.desperado.server.action.AckAction;
 import com.desperado.server.action.Action;
 import com.desperado.server.action.HeartBeatAction;
 import io.netty.channel.ChannelHandlerContext;
-import protobuffer.MessageProto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,9 +25,9 @@ public class MessageDispatcher implements IMessageDispatcher {
 
     private MessageDispatcher() {
         actionList.add(heartBeatAction);
-        actionList.add(sessionAction);
+//        actionList.add(sessionAction);
         actionList.add(ackAction);
-        actionList.add(singleMessageAction);
+//        actionList.add(singleMessageAction);
         actionList = Collections.unmodifiableList(actionList);
     }
 
@@ -45,9 +44,9 @@ public class MessageDispatcher implements IMessageDispatcher {
 
     public void dispatch(ChannelHandlerContext ctx, Object msg) {
         for (Action a : actionList) {
-            if (!a.filter(((MessageProto.msg) msg).getType())) {
-                a.action(ctx, msg);
-            }
+//            if (!a.filter(((MessageProto.msg) msg).getType())) {
+//                a.action(ctx, msg);
+//            }
         }
     }
 
@@ -56,6 +55,6 @@ public class MessageDispatcher implements IMessageDispatcher {
     }
 
     public void dispatchConnectionRemoveMessage(ChannelHandlerContext ctx) {
-        sessionAction.removeSession(ctx);
+//        sessionAction.removeSession(ctx);
     }
 }

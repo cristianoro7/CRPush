@@ -23,7 +23,7 @@ public class PushServer {
 
     public static void main(String[] args) {
         PushServer server = new PushServer();
-        server.recMsg();
+//        server.recMsg();
         server.start();
     }
 
@@ -56,22 +56,22 @@ public class PushServer {
         }
     }
 
-    public void recMsg() {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        try {
-            Connection connection = factory.newConnection();
-            com.rabbitmq.client.Channel channel = connection.createChannel();
-            channel.queueDeclare("xuxu", false, false, false, null);
-            Consumer consumer = new DefaultConsumer(channel) {
-                @Override
-                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-
-                }
-            };
-            channel.basicConsume("xuxu", true, consumer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void recMsg() {
+//        ConnectionFactory factory = new ConnectionFactory();
+//        factory.setHost("localhost");
+//        try {
+//            Connection connection = factory.newConnection();
+//            com.rabbitmq.client.Channel channel = connection.createChannel();
+//            channel.queueDeclare("xuxu", false, false, false, null);
+//            Consumer consumer = new DefaultConsumer(channel) {
+//                @Override
+//                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+//
+//                }
+//            };
+//            channel.basicConsume("xuxu", true, consumer);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
